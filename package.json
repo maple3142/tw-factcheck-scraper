@@ -4,11 +4,13 @@
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
+		"better-sqlite3": "^7.1.2",
 		"got": "^11.8.1",
 		"jsdom": "^16.4.0",
 		"typescript": "^4.2.2"
 	},
 	"devDependencies": {
+		"@types/better-sqlite3": "^5.4.1",
 		"@types/got": "^9.6.11",
 		"@types/jsdom": "^16.2.6",
 		"ts-node": "^9.1.1"
