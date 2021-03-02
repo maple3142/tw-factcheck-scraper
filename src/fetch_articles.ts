@@ -42,5 +42,5 @@ async function mkdirIfNotExist(dir: string, recursive: boolean = false) {
 		})
 	}
 	await imgDLQueue.onIdle()
-	db.close()
+	setTimeout(() => db.close(), 5000)
 })()
