@@ -1,0 +1,16 @@
+{
+	"name": "tw-factcheck-scraper",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"got": "^11.8.1",
+		"jsdom": "^16.4.0",
+		"typescript": "^4.2.2"
+	},
+	"devDependencies": {
+		"@types/got": "^9.6.11",
+		"@types/jsdom": "^16.2.6",
+		"ts-node": "^9.1.1"
+	}
+}
