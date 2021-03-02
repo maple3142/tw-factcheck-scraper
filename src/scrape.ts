@@ -1,6 +1,8 @@
 import got from 'got'
 import { JSDOM } from 'jsdom'
 import fs = require('fs')
+import stream = require('stream')
+import { promisify } from 'util'
 import assert = require('assert')
 
 type Correctness = '正確' | '錯誤' | '部分錯誤' | '事實釐清' | '證據不足'
@@ -35,12 +37,10 @@ export async function scrapeData(url: string): Promise<ArticleData> {
 	}
 }
 
+const pipeline = promisify(stream.pipeline)
+
 export function downloadFileTo(url: string, dest: string): Promise<void> {
-	return new Promise((resolve, reject) => {
-		const stream = got.stream(url).pipe(fs.createWriteStream(dest))
-		stream.once('finish', resolve)
-		stream.once('error', reject)
-	})
+	return pipeline(got.stream(url), fs.createWriteStream(dest))
 }
 
 export async function fetchUrlsList(url: string): Promise<string[]> {

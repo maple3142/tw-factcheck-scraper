@@ -33,12 +33,13 @@ async function mkdirIfNotExist(dir: string, recursive: boolean = false) {
 		await mkdirIfNotExist(dataDir)
 		const jsonFile = path.join(dataDir, 'data.json')
 		await fs.writeFile(jsonFile, JSON.stringify(data))
-		imgDLQueue
-			.addAll(data.imageUrls.map(img => () => downloadFileTo(img, path.join(dataDir, path.basename(img)))))
-			.then(() => {
-				fetchedStat.run(id)
-				console.log(`${id} complete`)
-			})
+		const imgTasks = data.imageUrls.map(img => () =>
+			downloadFileTo(img, path.join(dataDir, path.basename(img))).catch(() => {})
+		)
+		imgDLQueue.addAll(imgTasks).then(() => {
+			fetchedStat.run(id)
+			console.log(`${id} complete`)
+		})
 	}
 	await imgDLQueue.onIdle()
 	db.close()
