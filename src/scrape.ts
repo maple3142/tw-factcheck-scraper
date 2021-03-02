@@ -35,9 +35,9 @@ export async function scrapeData(url: string): Promise<ArticleData> {
 	}
 }
 
-export function downloadImage(url: string, path: string): Promise<void> {
+export function downloadFileTo(url: string, dest: string): Promise<void> {
 	return new Promise((resolve, reject) => {
-		const stream = got.stream(url).pipe(fs.createWriteStream(path))
+		const stream = got.stream(url).pipe(fs.createWriteStream(dest))
 		stream.once('finish', resolve)
 		stream.once('error', reject)
 	})

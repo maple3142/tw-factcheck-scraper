@@ -7,6 +7,7 @@
 		"better-sqlite3": "^7.1.2",
 		"got": "^11.8.1",
 		"jsdom": "^16.4.0",
+		"p-queue": "^6.6.2",
 		"typescript": "^4.2.2"
 	},
 	"devDependencies": {
