@@ -40,4 +40,6 @@ async function mkdirIfNotExist(dir: string, recursive: boolean = false) {
 				console.log(`${id} complete`)
 			})
 	}
+	await imgDLQueue.onIdle()
+	db.close()
 })()

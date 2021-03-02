@@ -1,5 +1,4 @@
 import { fetchUrlsList } from './scrape'
-import fs = require('fs/promises')
 import path = require('path')
 import sqlite3 = require('better-sqlite3')
 import assert = require('assert')
@@ -26,4 +25,5 @@ db.exec('CREATE TABLE IF NOT EXISTS article_urls (id INTEGER, url TEXT, is_fetch
 			stat.run(id, u)
 		}
 	}
+	db.close()
 })()
